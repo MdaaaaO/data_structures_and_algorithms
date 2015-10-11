@@ -1,5 +1,3 @@
-package u1;
-
 import java.util.ArrayList;
 import java.util.Random;
 

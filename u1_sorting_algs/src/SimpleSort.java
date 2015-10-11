@@ -1,5 +1,3 @@
-package u1;
-
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
@@ -7,6 +5,11 @@ import java.util.concurrent.TimeUnit;
  * This is the method which a human would use to sort numbers. We will start
  * with looking for the smallest number and then switching it to the front of
  * our ArrayList!
+ * 
+ * UPDATE: Now we are also looking for the biggest number and swap it to the
+ * 		   end of our ArrayList, _IF ALLOWED_ ;-0 
+ * 		   Note: Refactoring needed!
+ * 
  * 
  * @date 10/07/2015
  * @author Georg Kasper
@@ -63,6 +66,7 @@ public class SimpleSort {
 			// switch maxNumber, this are conditions where we are not allowed
 			// to switch the number because we are touching the indx already
 			// with our minNumber switch...
+			//TODO: refactor the if conditions to improve calculation time 
 			if ((indexMaxNumber == n) || (indexMinNumber == size - switchedMaxIt)
 					|| (indexMaxNumber == size - switchedMaxIt)) {
 				// System.out.println("not allowed to switch max");
