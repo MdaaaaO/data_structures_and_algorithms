@@ -1,0 +1,45 @@
+/**
+*
+*	Some benchmarks for the SimpleSort algorithm, just to see how it performs
+*	using the MaxNumber to fill the array also from behind!
+*	by: Georg Kasper
+**/
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// SimpleSort without checking max number in a array:
+>> starting benchmark tests [0] with n=60000
+SimpleSort(G) using ArrayList size 60000 total execution time: 4292ms ~4s
+SimpleSort(G) using ArrayList size 60000 total execution time: 4455ms ~4s
+SimpleSort(G) using ArrayList size 60000 total execution time: 4833ms ~4s
+SimpleSort(G) using ArrayList size 60000 total execution time: 3781ms ~3s
+SimpleSort(G) using ArrayList size 60000 total execution time: 4353ms ~4s
+SimpleSort(G) using ArrayList size 60000 total execution time: 4484ms ~4s
+>> done!
+
+>> starting benchmark tests [1] with n=100000
+SimpleSort(G) using ArrayList size 100000 total execution time: 26368ms ~26s
+SimpleSort(G) using ArrayList size 100000 total execution time: 27022ms ~27s
+SimpleSort(G) using ArrayList size 100000 total execution time: 11329ms ~11s
+SimpleSort(G) using ArrayList size 100000 total execution time: 28357ms ~28s
+SimpleSort(G) using ArrayList size 100000 total execution time: 30322ms ~30s
+SimpleSort(G) using ArrayList size 100000 total execution time: 11395ms ~11s
+>> done!
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// SimpleSort with checking max number in a array:
+>> starting benchmark tests [0] with n=60000
+SimpleSort(G) using ArrayList size 60000 total execution time: 2277ms ~2s
+SimpleSort(G) using ArrayList size 60000 total execution time: 2248ms ~2s
+SimpleSort(G) using ArrayList size 60000 total execution time: 2342ms ~2s
+SimpleSort(G) using ArrayList size 60000 total execution time: 1873ms ~1s
+SimpleSort(G) using ArrayList size 60000 total execution time: 2253ms ~2s
+SimpleSort(G) using ArrayList size 60000 total execution time: 2309ms ~2s
+>> done!
+
+>> starting benchmark tests [1] with n=100000
+SimpleSort(G) using ArrayList size 100000 total execution time: 13461ms ~13s
+SimpleSort(G) using ArrayList size 100000 total execution time: 13782ms ~13s
+SimpleSort(G) using ArrayList size 100000 total execution time: 5184ms ~5s
+SimpleSort(G) using ArrayList size 100000 total execution time: 13444ms ~13s
+SimpleSort(G) using ArrayList size 100000 total execution time: 14079ms ~14s
+SimpleSort(G) using ArrayList size 100000 total execution time: 5311ms ~5s
+>> done!
