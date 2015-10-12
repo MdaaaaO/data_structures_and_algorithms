@@ -114,6 +114,23 @@ public class SortingLauncher {
 	}
 
 	public static void main(String[] args) {
-		benchmark(1);
+		//benchmark(1);
+		
+		ArrayList<Integer> test_list = geneareRandomIntegerArrayList(10);
+
+		// Write the lists into a .txt file, or get them out of it
+		DataReader dataReader = new DataReader();
+		dataReader.writeNumbersIntoFile(test_list);
+		ArrayList<Integer> empty_list = new ArrayList<Integer>(dataReader.readNumbersFromFile());
+		
+		System.out.println("the list that was written: ");
+		for (int number : test_list) {
+			System.out.println(number);
+		}
+		
+		System.out.println("the list that was read: ");
+		for (int number : empty_list) {
+			System.out.println(number);
+		}
 	}
 }
