@@ -15,6 +15,25 @@ import java.util.Random;
  */
 public class SortingLauncher {
 
+	public static void testingDataReader() {
+		ArrayList<Integer> test_list = geneareRandomIntegerArrayList(10);
+
+		// Write the lists into a .txt file, or get them out of it
+		DataReader dataReader = new DataReader();
+		dataReader.writeNumbersIntoFile(test_list);
+		ArrayList<Integer> empty_list = new ArrayList<Integer>(dataReader.readNumbersFromFile());
+
+		System.out.println("the list that was written: ");
+		for (int number : test_list) {
+			System.out.println(number);
+		}
+
+		System.out.println("the list that was read: ");
+		for (int number : empty_list) {
+			System.out.println(number);
+		}
+	}
+
 	/**
 	 * This method will generate a random number within the range. Be careful,
 	 * this numbers are not unique!
@@ -70,67 +89,26 @@ public class SortingLauncher {
 	 */
 	public static void benchmark(int iterations) {
 
-		int n = 100000;
+		int n = 10000;
+
 		for (int i = 0; i < iterations; i++) {
-
-			// sample size
+		
 			System.out.println(">> starting benchmark tests [" + i + "] with " + "n=" + n);
-
-			// Create random ArrayList
-//			ArrayList<Integer> random_list_2 = geneareRandomIntegerArrayList(n);
-//			ArrayList<Integer> random_list_4 = geneareRandomIntegerArrayList(n);
-
-			// BubbleSort by Georg
-//			for (int j = 0; j < 2; j++) {
-//				ArrayList<Integer> random_list = geneareRandomIntegerArrayList(n);
-//				BubbleSort bub = new BubbleSort();
-//				ArrayList<Integer> sorted_list_1 = bub.sort(random_list);
-//				amIsorted(sorted_list_1);
-//			}
-			
-
-			// BubbleSort by Julian
-//			BubbleSortTwo bub_two = new BubbleSortTwo();
-//			ArrayList<Integer> sorted_list_2 = bub_two.sort(random_list_2);
-//			amIsorted(sorted_list_2);
-
-			// SimpleSort by Georg
 			for (int j = 0; j < 6; j++) {
 				ArrayList<Integer> random_list_3 = geneareRandomIntegerArrayList(n);
 				SimpleSort simpleSort = new SimpleSort();
 				ArrayList<Integer> sorted_list_3 = simpleSort.sort(random_list_3);
 				amIsorted(sorted_list_3);
 			}
-
-			// SimpleSortTwo by Julian
-//			SimpleSortTwo simpleSortTwo = new SimpleSortTwo();
-//			ArrayList<Integer> sorted_list_4 = simpleSortTwo.sort(random_list_4);
-//			amIsorted(sorted_list_4);
-
 			System.out.println(">> done!");
 			n += 10000;
 		}
-
 	}
 
 	public static void main(String[] args) {
-		//benchmark(1);
 		
-		ArrayList<Integer> test_list = geneareRandomIntegerArrayList(10);
+		System.out.println("Uncomment the method you would like to launch!");
+		benchmark(1);
 
-		// Write the lists into a .txt file, or get them out of it
-		DataReader dataReader = new DataReader();
-		dataReader.writeNumbersIntoFile(test_list);
-		ArrayList<Integer> empty_list = new ArrayList<Integer>(dataReader.readNumbersFromFile());
-		
-		System.out.println("the list that was written: ");
-		for (int number : test_list) {
-			System.out.println(number);
-		}
-		
-		System.out.println("the list that was read: ");
-		for (int number : empty_list) {
-			System.out.println(number);
-		}
 	}
 }

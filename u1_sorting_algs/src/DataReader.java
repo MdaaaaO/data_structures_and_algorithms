@@ -1,8 +1,5 @@
-package u1;
-
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -12,6 +9,7 @@ import java.util.ArrayList;
  * this class is used to write integer numbers into a .txt file,
  * or to get them out again
  *
+ * @author Julian
  */
 
 public class DataReader {
