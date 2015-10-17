@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
  * @author Georg Kasper
  *
  */
-public class SimpleSort {
+public class MySimpleSort {
 
 	public ArrayList<Integer> sort(ArrayList<Integer> integer_list) {
 

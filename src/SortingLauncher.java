@@ -1,7 +1,9 @@
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
-import algorithms.SimpleSort;
+import algorithms.MyQuickSort;
+import algorithms.MySimpleSort;
 
 /**
  * Data Structures and Algorithms Lecture HFT.
@@ -77,7 +79,7 @@ public class SortingLauncher {
 		}
 		if (!sorted) {
 			System.out.println("You are not sorted! ;-(");
-			System.out.println(random_list.toString());
+//			System.out.println(random_list.toString());
 		}
 	}
 
@@ -91,26 +93,41 @@ public class SortingLauncher {
 	 */
 	public static void benchmark(int iterations) {
 
-		int n = 10000;
+		int n = 1000000;
 
 		for (int i = 0; i < iterations; i++) {
 		
 			System.out.println(">> starting benchmark tests [" + i + "] with " + "n=" + n);
+//			for (int j = 0; j < 6; j++) {
+//				ArrayList<Integer> random_list_1 = geneareRandomIntegerArrayList(n);
+//				MySimpleSort simpleSort = new MySimpleSort();
+//				ArrayList<Integer> sorted_list_1 = simpleSort.sort(random_list_1);
+//				amIsorted(sorted_list_1);
+//			}
+			
 			for (int j = 0; j < 6; j++) {
-				ArrayList<Integer> random_list_3 = geneareRandomIntegerArrayList(n);
-				SimpleSort simpleSort = new SimpleSort();
-				ArrayList<Integer> sorted_list_3 = simpleSort.sort(random_list_3);
-				amIsorted(sorted_list_3);
+				
+				ArrayList<Integer> random_list_2 = geneareRandomIntegerArrayList(n);
+//				amIsorted(random_list_2);
+				System.out.print("QuickSort(G) using ArrayList size ");
+				long startTime = System.currentTimeMillis();
+				MyQuickSort quickSort = new MyQuickSort();
+				quickSort.sort(random_list_2, 0, random_list_2.size()-1);
+				long endTime = System.currentTimeMillis();
+				System.out.print(" total execution time: " + (endTime - startTime) + "ms");
+				System.out.println(" ~" + TimeUnit.MILLISECONDS.toSeconds(endTime - startTime) + "s");
+				amIsorted(random_list_2);
 			}
+			
 			System.out.println(">> done!");
-			n += 10000;
+			n += 1000000;
 		}
 	}
 
 	public static void main(String[] args) {
 		
 		System.out.println("Uncomment the method you would like to launch!");
-		benchmark(1);
+		benchmark(10);
 
 	}
 }

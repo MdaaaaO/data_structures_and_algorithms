@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
  * @author Georg Kasper
  *
  */
-public class BubbleSort {
+public class MyBubbleSort {
 
 	/**
 	 * BubbleSort with little benchmark output to command line!
