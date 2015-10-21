@@ -1,8 +1,5 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
-
 import algorithms.MergeSort;
 import algorithms.MyMergeSort;
 import algorithms.MyQuickSort;
