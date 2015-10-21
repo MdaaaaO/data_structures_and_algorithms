@@ -1,7 +1,9 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+import algorithms.MyMergeSort;
 import algorithms.MyQuickSort;
 import algorithms.MySimpleSort;
 
@@ -93,41 +95,51 @@ public class SortingLauncher {
 	 */
 	public static void benchmark(int iterations) {
 
-		int n = 1000000;
-
+		int sample_size_n = 50000;
+		int sample_size_increase = 50000;
+		
 		for (int i = 0; i < iterations; i++) {
 		
-			System.out.println(">> starting benchmark tests [" + i + "] with " + "n=" + n);
-//			for (int j = 0; j < 6; j++) {
-//				ArrayList<Integer> random_list_1 = geneareRandomIntegerArrayList(n);
-//				MySimpleSort simpleSort = new MySimpleSort();
-//				ArrayList<Integer> sorted_list_1 = simpleSort.sort(random_list_1);
-//				amIsorted(sorted_list_1);
-//			}
+			System.out.println(">> starting benchmark tests [" + i + "] with " + "n=" + sample_size_n);
+
+			/**
+			 * SIMPLE SORT
+			 */
+			for (int j = 0; j < 0; j++) {
+				ArrayList<Integer> random_list_1 = geneareRandomIntegerArrayList(sample_size_n);
+				MySimpleSort simpleSort = new MySimpleSort();
+				random_list_1 = simpleSort.sort(random_list_1);
+				amIsorted(random_list_1);
+			}
 			
-			for (int j = 0; j < 6; j++) {
-				
-				ArrayList<Integer> random_list_2 = geneareRandomIntegerArrayList(n);
-//				amIsorted(random_list_2);
-				System.out.print("QuickSort(G) using ArrayList size ");
-				long startTime = System.currentTimeMillis();
+			/**
+			 * QUICK SORT
+			 */
+			for (int j = 0; j < 4; j++) {
+				ArrayList<Integer> random_list_2 = geneareRandomIntegerArrayList(sample_size_n);
 				MyQuickSort quickSort = new MyQuickSort();
-				quickSort.sort(random_list_2, 0, random_list_2.size()-1);
-				long endTime = System.currentTimeMillis();
-				System.out.print(" total execution time: " + (endTime - startTime) + "ms");
-				System.out.println(" ~" + TimeUnit.MILLISECONDS.toSeconds(endTime - startTime) + "s");
+				quickSort.sort_benchmark(random_list_2);
 				amIsorted(random_list_2);
 			}
 			
+			/**
+			 * MERGE SORT
+			 */
+			for (int j = 0; j < 4; j++) {
+				ArrayList<Integer> random_list_3 = geneareRandomIntegerArrayList(sample_size_n);
+				MyMergeSort myMergeSort = new MyMergeSort();
+				random_list_3 = myMergeSort.sort_benchmark(random_list_3);
+				amIsorted(random_list_3);
+			}
+			
 			System.out.println(">> done!");
-			n += 1000000;
+			sample_size_n += sample_size_increase;
 		}
 	}
 
 	public static void main(String[] args) {
-		
-		System.out.println("Uncomment the method you would like to launch!");
-		benchmark(10);
+	
+		benchmark(2);
 
 	}
 }
