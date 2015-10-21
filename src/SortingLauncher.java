@@ -3,6 +3,7 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+import algorithms.MergeSort;
 import algorithms.MyMergeSort;
 import algorithms.MyQuickSort;
 import algorithms.MySimpleSort;
@@ -99,7 +100,6 @@ public class SortingLauncher {
 		int sample_size_increase = 50000;
 		
 		for (int i = 0; i < iterations; i++) {
-		
 			System.out.println(">> starting benchmark tests [" + i + "] with " + "n=" + sample_size_n);
 
 			/**
@@ -130,6 +130,16 @@ public class SortingLauncher {
 				MyMergeSort myMergeSort = new MyMergeSort();
 				random_list_3 = myMergeSort.sort_benchmark(random_list_3);
 				amIsorted(random_list_3);
+			}
+			
+			/**
+			 * MERGE SORT JUL
+			 */
+			for (int j = 0; j < 4; j++) {
+				ArrayList<Integer> random_list_4 = geneareRandomIntegerArrayList(sample_size_n);
+				MergeSort mergeSort = new MergeSort();
+				random_list_4 = mergeSort.sort_benchmark(random_list_4);
+				amIsorted(random_list_4);
 			}
 			
 			System.out.println(">> done!");
