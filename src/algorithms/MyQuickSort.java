@@ -1,6 +1,7 @@
 package algorithms;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class MyQuickSort {
 
@@ -15,7 +16,6 @@ public class MyQuickSort {
 
 	private int partition(ArrayList<Integer> unsortedList, int low, int high) {
 		int pivot = unsortedList.get(high);
-//		System.out.println("PIVOT=" + pivot);
 		int swap = low;
 
 		for (int j = swap; j < high; j++) {
@@ -24,21 +24,24 @@ public class MyQuickSort {
 				swap++;
 			}
 		}
-//		System.out.println("SWAP Pivot " + high + " and " + swap);
 		swap(unsortedList, swap, high);
-//		System.out.println(unsortedList.toString());
-//		System.out.println("RETURN " + swap);
 		return swap;
 	}
 
-	public void sort(ArrayList<Integer> unsortedList, int low, int high) {
+	private void sort(ArrayList<Integer> unsortedList, int low, int high) {
 		if (low < high) {
-//			System.out.println("LOW=" + low + " HIGH=" + high);
-//			System.out.println("INPUT LIST=" + unsortedList.toString());
 			int p = partition(unsortedList, low, high);
 			sort(unsortedList, low, p - 1);
 			sort(unsortedList, p + 1, high);
-//			System.out.println("OUTPUT LIST=" + unsortedList.toString());
 		}
+	}
+	
+	public void sort_benchmark(ArrayList<Integer> unsortedList) {
+		System.out.print("QuickSort(G) using ArrayList size " + unsortedList.size());
+		long startTime = System.currentTimeMillis();
+		sort(unsortedList, 0, unsortedList.size()-1);
+		long endTime = System.currentTimeMillis();
+		System.out.print(" total execution time: " + (endTime - startTime) + "ms");
+		System.out.println(" ~" + TimeUnit.MILLISECONDS.toSeconds(endTime - startTime) + "s");
 	}
 }
