@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.concurrent.TimeUnit;
 
 /**
- * This is a Top-down implementation of the MergeSort algorithm using lists in 
+ * This is a Top-down implementation of the MergeSort algorithm using LISTS in 
  * Java.
  * 
  * https://en.wikipedia.org/wiki/Merge_sort#Top-down_implementation_using_lists
