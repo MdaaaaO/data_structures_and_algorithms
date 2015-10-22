@@ -2,6 +2,8 @@ package testing;
 
 import java.util.ArrayList;
 
+import stack.MyListStack;
+
 public class SmallStuff {
 	
 	/**
@@ -24,7 +26,15 @@ public class SmallStuff {
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		MyListStack stack = new MyListStack();
+		stack.push(" 2 ");
+		stack.push(" 3 ");
+		stack.push(" 4 ");
+		stack.pop();
+		stack.pop();
+		stack.pop();
+		stack.pop();
+		stack.pop();
 
 	}
 
