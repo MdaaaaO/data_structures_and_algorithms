@@ -1,7 +1,6 @@
 package stack;
 
 /**
- * 
  * Exercise 1.b - Stack Implementation as a linked List with Exception-Handling.
  * 
  * @author Georg Kasper
@@ -9,7 +8,7 @@ package stack;
  */
 public class MyListStack extends Stack {
 	
-	private Link myStack = new Link(" 1 ");
+	private Link myTop = new Link();
 
 	@Override
 	public String version() {
@@ -24,17 +23,22 @@ public class MyListStack extends Stack {
 
 	@Override
 	public void push(Object element) {
-		
-		Link oldStackTOP = this.myStack;
-		this.myStack = new Link(element);
-		this.myStack.next = oldStackTOP;
-		System.out.println("new top " + this.myStack.data.toString());
+		if (this.myTop.data == null) {
+			this.myTop.data = element;
+		} else {
+			Link oldStackTOP = this.myTop;
+			this.myTop = new Link(element);
+			this.myTop.next = oldStackTOP;
+			System.out.println("new top " + this.myTop.data.toString());
+			System.out.println("prev. top " + oldStackTOP.data.toString());
+		}
+
 	}
 
 	@Override
 	public Object pop() {
-		Object top = this.myStack.data;
-		this.myStack = this.myStack.next;
+		Object top = this.myTop.data;
+		this.myTop = this.myTop.next;
 		System.out.println("returning" + top);
 		return top;
 	}
@@ -64,7 +68,18 @@ public class MyListStack extends Stack {
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
+		String someString = "";
+		Link someLink = this.myTop;
+		someString += "[" +  someLink.data.toString() + "] ";
+		someLink = someLink.next;
+		while (true) {
+			someString += someLink.data.toString() + " ";
+			if (someLink.next == null) {
+				break;
+			} else {
+				someLink = someLink.next;
+			}
+		}
+		return someString;
 	}
 }
