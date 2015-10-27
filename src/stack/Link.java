@@ -36,4 +36,12 @@ public class Link {
 		this.data = data;
 		this.next = null;
 	}
+	
+	public String toString() {
+		if (this.data == null) {
+			return "null";
+		} else {
+			return this.data.toString();
+		}
+	}
 }
