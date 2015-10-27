@@ -10,7 +10,7 @@ import stack.StackFullException;
  * @date 10/21/2015
  */
 public class MyArrayStack extends Stack {
-	private int array_size = 2;
+	private int array_size = 16;
 	private Object[] intern_array = new Object[this.array_size];
 	private int intern_index = -1;
 	
@@ -47,7 +47,7 @@ public class MyArrayStack extends Stack {
 
 	@Override
 	public int size() {
-		return this.intern_index+1;
+		return this.intern_index + 1;
 	}
 
 	@Override
@@ -70,8 +70,12 @@ public class MyArrayStack extends Stack {
 	}
 
 	@Override
-	public Object peek() {
-		return this.intern_array[this.intern_index];
+	public Object peek() throws StackEmptyException {
+		if (this.intern_index == -1) {
+			throw new StackEmptyException("You can't peek an empty stack.");
+		} else {
+			return this.intern_array[this.intern_index];
+		}
 	}
 
 	@Override
