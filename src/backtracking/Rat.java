@@ -1,7 +1,6 @@
 package backtracking;
 
 import java.util.Stack;
-
 import com.sun.javafx.geom.Point2D;
 
 

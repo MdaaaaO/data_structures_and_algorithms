@@ -19,14 +19,30 @@ public class Maze {
 	public int cheese_x = 2;
 	public int cheese_y = 10;
 	
+	/**
+	 * Empty constructor to use the pre-defined maze!
+	 */
 	public Maze() {}
+	/**
+	 * This constructor will take a new 2D Maze, you also have to tell where the
+	 * cheese will be.
+	 * @param int[][] maze
+	 * @param int cheese_x_pos
+	 * @param int cheese_y_pos
+	 */
 	public Maze(int[][] maze, int cheese_x_pos, int cheese_y_pos) {
 		this.maze = maze;
 		this.cheese_x = cheese_x_pos;
 		this.cheese_y = cheese_y_pos;
 	}
 	
-	public boolean allowedPosition(int x, int y) {
+	/**
+	 * This method returns true if we are allowed to visit the position [X|Y]
+	 * @param int x
+	 * @param int y
+	 * @return true if allowed to go to [X|Y]
+	 */
+	boolean allowedPosition(int x, int y) {
 		if (x >= 0 && y >= 0 && x < maze.length && y < maze[0].length 
 				&& maze[x][y] != 0) {
 			return true;
@@ -34,4 +50,3 @@ public class Maze {
 		return false;
 	}
 }
-
