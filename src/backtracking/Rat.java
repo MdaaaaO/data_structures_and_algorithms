@@ -1,6 +1,5 @@
 package backtracking;
 
-import java.util.Iterator;
 import java.util.Stack;
 
 import com.sun.javafx.geom.Point2D;
@@ -9,31 +8,53 @@ import com.sun.javafx.geom.Point2D;
 public class Rat {
 	
 	private String name = "Rat";
-	private Stack<Point2D> rat_path = new Stack();
+	private Stack<Point2D> rat_path = new Stack<Point2D>();
 	
+	/**
+	 * Constructor which will give our rat name.
+	 * @param name
+	 */
 	public Rat(String name) {
 		this.name = name;
 		System.out.println("A new rat, named " + this.name +  " was born!");
 	}
 	
+	/**
+	 * We will use this enums to move our rat around the maze.
+	 * @author Kasper
+	 *
+	 */
 	public enum Movement {
 		UP, DOWN, RIGHT, LEFT
 	}
 	
+	/**
+	 * This method takes a maze as an input and starts the findPath() method
+	 * which uses a recursive backtracking algorithm to find the cheese in the
+	 * maze.
+	 * @printout FOUND or NO PATH FOUND
+	 * @param maze
+	 */
 	public void start(Maze maze) {
 		if (findPath(maze, 0, 0, Movement.RIGHT)) {
 			System.out.println("FOUND");
-//			System.out.println(this.rat_path.toString());
 		} else {
 			System.out.println("NO PATH FOUND");
 		}
 	}
 	
+	/**
+	 * We use this method to check whether the next position of the rat is 
+	 * already one where we have been.
+	 * @param x
+	 * @param y
+	 * @return true if we were already there
+	 */
 	private boolean contains_point(int x, int y) {
 		Point2D point = new Point2D();
 		point.x = x;
 		point.y = y;
-		for (Point2D point2d : rat_path) {
+		for (Point2D point2d : this.rat_path) {
 			if (point2d.x == point.x && point2d.y == point.y) {
 				System.out.println("We were already HERE!!!" 
 						+ " x=" + point.x 
@@ -44,7 +65,31 @@ public class Rat {
 		return false;
 	}
 	
-	
+	/**
+	 * This is an recursive backtracking implementation, we start to check
+	 * from our starting cell whether we can go UP - DOWN - LEFT - RIGHT, to
+	 * avoid going UP and DOWN all the time we also check the last movement of
+	 * our Rat.
+	 * 
+	 * 		Explanation: If we just moved UP, then we will skip the move DOWN 
+	 * 					 step, etc.
+	 * 
+	 * We also want to avoid, that our Rat will move in a circle. That is why 
+	 * we are using a stack to collect our visited cells. 
+	 * 
+	 * 		Explanation: If going LEFT will bring us to a visited cell, we won't
+	 *            		 make this move.
+	 * 
+	 * We are also using an allowedPosition() method from our Maze implementation,
+	 * to make sure that the next move is save for our rat. (We don't want to 
+	 * hit a wall or move out of the maze)
+	 * 
+	 * @param Maze maze
+	 * @param int rat_x
+	 * @param int rat_y
+	 * @param enum Movement
+	 * @return true / false
+	 */
 	private boolean findPath(Maze maze, int rat_x, int rat_y, Movement mv) {
 		
 		if (maze.allowedPosition(rat_x, rat_y)) {
