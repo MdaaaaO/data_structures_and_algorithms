@@ -6,6 +6,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 public class Graph {
 	
@@ -85,8 +87,9 @@ public class Graph {
 	 */
 	private void createNodes(String[] names) {
 		for (int i = 0; i < names.length; i++) {
-			Node node = new Node(names[i], i+1);	// +1 because INPUT file
-			hash_nodes.put(i+1, node);				// IDs starts with 1
+			int node_id_and_key = i + 1;
+			Node node = new Node(names[i], node_id_and_key);	// +1 because INPUT file
+			hash_nodes.put(node_id_and_key, node);				// IDs starts with 1
 		}
 	}
 
@@ -103,6 +106,74 @@ public class Graph {
 	 */
 	int getDegree(int nodeID) {
 		return this.hash_nodes.get(nodeID).getDegree();
+	}
+	
+	/**
+	 * This method checks all nodes, to find out whether this is an euler graph
+	 * or not, see wiki definition for more information.
+	 * 
+	 * wiki: The term Eulerian graph has two common meanings in graph theory. 
+	 *       One meaning is a graph with an Eulerian circuit, and the other is 
+	 *       a graph with every vertex of even degree. 
+	 * 
+	 *       These definitions coincide for connected graphs.
+	 * 
+	 * @return boolean True if this is an Eulerian graph
+	 */
+	public boolean isEulerianGraph() {
+		//TODO: Improve iterator, looks off atm.
+		int oddNodes = 0;
+		if (isConnected()) {
+			Iterator it = hash_nodes.entrySet().iterator();
+		    while (it.hasNext()) {
+		        Map.Entry pair = (Map.Entry)it.next();
+		        // Assumption - ID and KEY have same value and are unique
+		        int id = Integer.parseInt(pair.getKey().toString());
+		        int degree = getDegree(id);
+		        if (degree % 2 == 1) {
+		        	oddNodes++;
+		        }
+		        it.remove(); // avoids a ConcurrentModificationException
+		    }
+		    return (oddNodes == 0);
+		} else {
+			return false;
+		}
+	}
+	
+	/**
+	 * 
+	 * 
+	 * wiki: Breadth-first search (BFS) is an algorithm for traversing or 
+	 *       searching tree or graph data structures.
+	 */
+	public void graphBFS(int ID) {
+		
+	}
+	
+	/**
+	 * This method will perform a DFS on the current Graph and print out the
+	 * visited node to the terminal.
+	 * 
+	 * We are using a directed graph, every Node has a list of successors which
+	 * helps us to perform DFS.
+	 * 
+	 *  wiki: Depth-first search (DFS) is an algorithm for traversing or 
+	 *        searching tree or graph data structures.
+	 */
+	public void graphDFS(int ID) {
+		Node node = hash_nodes.get(ID);
+		node.setVisited(true);
+		for (int i = 0; i < node.getSuccessorsList().size(); i++) {
+			if (!node.getSuccessorsList().get(i).isVisited()) {
+				graphDFS(node.getSuccessorsList().get(i).getId());
+			}
+		}
+	}
+	
+	private boolean isConnected() {
+		//TODO: check connection with BFS or DFS
+		return true;
 	}
 
 	@Override

@@ -12,6 +12,7 @@ public class Edge {
 		this.v1 = v1;
 		this.v1.increseDegree();
 		this.weight = weight;
+		this.v0.appendSuccessor(v1);
 	}
 	
 	/**
