@@ -7,7 +7,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Map;
+import java.util.Queue;
 
 public class Graph {
 	
@@ -148,7 +150,18 @@ public class Graph {
 	 *       searching tree or graph data structures.
 	 */
 	public void graphBFS(int ID) {
-		
+		Queue queue = new LinkedList<Node>();
+		queue.add(hash_nodes.get(ID));
+		while(!queue.isEmpty()) {
+			Node node = (Node) queue.poll();
+			node.setVisited(true);
+			for (int i = 0; i < node.getSuccessorsList().size(); i++) {
+				if (!node.getSuccessorsList().get(i).isVisited() &&
+						!queue.contains(node.getSuccessorsList().get(i))) {
+					queue.add(node.getSuccessorsList().get(i));
+				}
+			}
+		}
 	}
 	
 	/**
@@ -169,6 +182,7 @@ public class Graph {
 				graphDFS(node.getSuccessorsList().get(i).getId());
 			}
 		}
+		System.out.println("No more successors for " + node.getName());
 	}
 	
 	private boolean isConnected() {
